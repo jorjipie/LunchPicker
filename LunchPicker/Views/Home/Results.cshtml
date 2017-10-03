@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<h2>Results</h2>*@
-
 <div>
     <div class="jumbotron">
         <p>You're going to...</p>
@@ -40,25 +38,22 @@
     }
     @if (Model.Results.Count > 0)
     {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Votes</th>
-                    <th>Restaurant</th>
-                </tr>
-            </thead>
-            @foreach (var r in Model.Results)
-            {
-                <tr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Votes</th>
+                <th>Restaurant</th>
+            </tr>
+        </thead>
+        @foreach (var r in Model.Results)
+        {
+            <tr>
 
-                    <td>@r.Count.ToString()</td>
-                    <td>@r.Restaurant.Name</td>
-                </tr>
-            }
-        </table>
+                <td>@r.Count.ToString()</td>
+                <td>@r.Restaurant.Name</td>
+            </tr>
+        }
+    </table>
     }
 </div>
-@*<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>*@
+
