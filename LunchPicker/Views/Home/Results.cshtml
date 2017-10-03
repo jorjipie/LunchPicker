@@ -1,0 +1,64 @@
+﻿@model LunchPicker.Models.ResultsViewModel
+
+@{
+    ViewBag.Title = "Results";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Results</h2>*@
+
+<div>
+    <div class="jumbotron">
+        <p>You're going to...</p>
+        <h1>@Html.DisplayFor(model => model.Winner.Name)</h1>
+        <div>
+            <em style="float: left;">@Html.DisplayFor(model => model.Winner.Slogan)</em>
+            <span style="float: right">
+                @Html.ActionLink("Go Back", "Index", null, new { @class = "btn btn-default" })
+            </span>
+            <div style="clear: both;"></div>
+        </div>
+        
+        
+    </div>
+
+    @if (Model.YourVote != null)
+    {
+    <dl class="dl-horizontal">
+        <dt>You voted for</dt>
+        <dd>
+            @Html.DisplayFor(model => model.YourVote.Restaurant.Name)
+            <em>at</em>
+            @Model.YourVote.Timestamp.ToString("h:m tt")
+        </dd>
+    </dl>
+    }
+
+    @if (Model.Winner == Model.TieBreaker)
+    {
+        <p>This was selected at random.</p>
+    }
+    @if (Model.Results.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Votes</th>
+                    <th>Restaurant</th>
+                </tr>
+            </thead>
+            @foreach (var r in Model.Results)
+            {
+                <tr>
+
+                    <td>@r.Count.ToString()</td>
+                    <td>@r.Restaurant.Name</td>
+                </tr>
+            }
+        </table>
+    }
+</div>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@
